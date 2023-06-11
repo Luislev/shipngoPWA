@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'core.apps.CoreConfig',
     'bootstrap4',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -120,3 +123,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/sign-in/'
+LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY=env("SOCIAL_AUTH_FACEBOOK_KEY")
+SOCIAL_AUTH_FACEBOOK_SECRET=env("SOCIAL_AUTH_FACEBOOK_SECRET")
+SOCIAL_AUTH_FACEBOOK_SCOPE= ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.stmp.EmailBackend'
+EMAIL_HOST = 'stmp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = 'ShipnGo <no-reply@shipngo.localhost>'
