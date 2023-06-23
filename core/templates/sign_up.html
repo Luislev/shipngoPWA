@@ -26,6 +26,7 @@
                         </p>
                         <hr>
                         <a href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}" class="btn btn-outline-primary btn-block">Sign In with Facebook</a>
+                        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}" class="btn btn-outline-success btn-block">Sign In with Google</a>
                     </form>
                 </div>
             </div>

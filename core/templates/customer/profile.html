@@ -2,14 +2,9 @@
 {% load bootstrap4 %}
 
 {%block head %}
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAmjmnEhG7xy1wGhe-YCwJ7tbkM4hLlWh8",
     authDomain: "shipngo-7694b.firebaseapp.com",
@@ -20,20 +15,71 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 </script>
 {% endblock %}
 
 {%block main %}
 
+
 <b class="text-secondary">Basic Information</b>
 <div class="card bg-white-mt-2 mb-5">
     <div class="card-body">
-            <form method="post">
-                <input type="hidden" name="action" value="update_profile">
-                <button type="submit" class="btn btn-danger">Save</button>
-            </form>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form user_form %}
+            {% bootstrap_form customer_form %}
+              <input type="hidden" name="action" value="update_profile">
+              <button type="submit" class="btn btn-danger">Save</button>
+          </form>
     </div>
 </div>
+
+<b class="text-secondary">Change password</b>
+<div class="card bg-white-mt-2 mb-5">
+    <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form password_form %}
+              <input type="hidden" name="action" value="update_password">
+              <button type="submit" class="btn btn-danger">Save</button>
+          </form>
+    </div>
+</div>
+
+<b class="text-secondary">Phone Number</b>
+<div class="card bg-white-mt-2 mb-5">
+    <div class="card-body">
+
+      <div id="get-code" class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Your phone number">
+        <div class="input-group-append">
+          <button class="btn btn-danger" type="button">Send code</button>
+        </div>
+      </div>
+
+        <div id="verify-code" class="input-group mb-3 d-none">
+          <input type="text" class="form-control" placeholder="Verification code">
+          <div class="input-group-append">
+            <button class="btn btn-danger" type="button">Verify code</button>
+          </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  $("#get-code button").on('click', function(){
+    const phoneNumber = $("#get-code input").val();
+    console.log(phoneNumber);
+
+    $("#get-code").addClass("d-none");
+    $("#verify-code").removeClass("d-none");
+  });
+
+  $("#verify-code button").on('click', function(){
+    const code = $("#verify-code input").val();
+    console.log(code);
+  });
+</script>
 
 {% endblock %}

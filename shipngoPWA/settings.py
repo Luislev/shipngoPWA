@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'core.middleware.ProfileMiddleware',
 ]
 
 ROOT_URLCONF = 'shipngoPWA.urls'
@@ -127,12 +129,18 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/sign-in/'
 LOGIN_REDIRECT_URL = '/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
     'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 SOCIAL_AUTH_FACEBOOK_KEY=env("SOCIAL_AUTH_FACEBOOK_KEY")
 SOCIAL_AUTH_FACEBOOK_SECRET=env("SOCIAL_AUTH_FACEBOOK_SECRET")
 SOCIAL_AUTH_FACEBOOK_SCOPE= ['email']
@@ -140,11 +148,12 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.stmp.EmailBackend'
-EMAIL_HOST = 'stmp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
 EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = 'ShipnGo <no-reply@shipngo.localhost>'
+DEFAULT_FROM_EMAIL = 'ShipnGo <no-reply@shipngopty.localhost>'
+
+GOOGLE_MAP_API_KEY = env("GOOGLE_MAP_API_KEY")

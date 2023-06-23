@@ -15,6 +15,7 @@ def send_welcome_email(sender, instance, created, **kwargs):
                 'name': instance.get_full_name()
             }
         )
+
         send_mail(
             '¡Welcome to ShipnGo!',
             body,

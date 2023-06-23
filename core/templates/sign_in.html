@@ -20,8 +20,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         {% bootstrap_form_errors form %}
-                        {% bootstrap_label "Email" %}
-                        {% bootstrap_field form.username show_label=False placeholder="Email" %}
+                        {% bootstrap_field form.username %}
                         {% bootstrap_field form.password %}
                         <button class="btn btn-block btn-dark" style="background-color: #660500;">Sign In</button>
                         <p class="text-center mt-3">
@@ -29,6 +28,7 @@
                         </p>
                         <hr>
                         <a href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}" class="btn btn-outline-primary btn-block">Sign In with Facebook</a>
+                        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}" class="btn btn-outline-success btn-block">Sign In with Google</a>
                     </form>
                 </div>
             </div>

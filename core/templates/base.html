@@ -12,37 +12,61 @@
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
     {% block head %}{% endblock %}
 </head>
 <body style="font-family: 'Inter', sans-serif;">
-    <nav class="navbar {% if not request.user.is_authenticated %} navbar-expand-lg {% endif %} navbar-dark" style="background-color: #660500;">
-        <a class="navbar-brand" style=" font-weight: 900;" href="/">ShipnGo</a>
-        {% if not request.user.is_authenticated %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item {% if request.GET.next != '/courier/'%} active {% endif %}">
-              <a class="nav-link" href="/sign-in/?next=/customer">Cliente <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item  {% if request.GET.next == '/courier/'%} active {% endif %}">
-              <a class="nav-link" href="/sign-in/?next=/courier">Acarreador</a>
-            </li>
-          </ul>
-        </div>
-        {% else %}
-        <form class="form-inline">
-          <span class="mr-4" style="color: white; font-weight: 600;">{{ request.user.get_full_name|title }}</span>
-        <a href="/sign-out" class="btn btn-outline-light">Sign Out</a>
-        </form>
-        {% endif %}
-      </nav>
+<nav class="navbar {% if not request.user.is_authenticated %} navbar-expand-lg {% endif %} navbar-dark" style="background-color: #660500;">
+    <a class="navbar-brand" style=" font-weight: 900; font-size: 35px;" href="/">ShipnGo</a>
+    {% if not request.user.is_authenticated %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item {% if request.GET.next != '/courier/'%} active {% endif %}">
+          <a class="nav-link" href="/sign-in/?next=/customer">Cliente <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item  {% if request.GET.next == '/courier/'%} active {% endif %}">
+          <a class="nav-link" href="/sign-in/?next=/courier">Acarreador</a>
+        </li>
+      </ul>
+    </div>
+    {% else %}
+    <form class="form-inline">
+      <span class="mr-4" style="color: white; font-weight: 600;">{{ request.user.get_full_name|title }}</span>
+    <a href="/sign-out" class="btn btn-outline-light">Sign Out</a>
+    </form>
+    {% endif %}
+  </nav>
 
-      {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
 
-      <footer class="text-center mt-5 mb-5">
-        &copy; shipnGo.com
-      </footer>
-    </body>
+  <footer class="page-footer text-center text-light mt-4" style="background-color: #660500;">
+    <p style="font-weight: 900; font-size: 25px;">ShipnGo</p>
+    &copy; Copyright. Todos los derechos reservados ShipnGo 2023
+  </footer>
+
+  <script src="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.css">
+
+  <script>
+    function toast(message, type){
+      bootoast.toast({
+        position: 'leftBottom',
+        message,
+        type,
+      });
+    }
+
+    {% if messages %}
+
+    {% for message in messages %}
+    toast('{{ message }}', '{{message.tags}}');
+    {% endfor %}
+
+    {% endif %}
+  </script>
+</body>
 </html>
