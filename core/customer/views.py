@@ -50,6 +50,13 @@ def profile_page(request):
 def create_job_page(request):
     current_customer = request.user.customer
 
+    def is_location_in_panama(pickup_address, delivery_address):
+        pickup_address = pickup_address.lower()
+        delivery_address = delivery_address.lower()
+        return ('panamá' in pickup_address or 'panama' in pickup_address) and ('panamá' in delivery_address or 'panama' in delivery_address)
+
+
+
     has_current_job = Job.objects.filter(
         customer = current_customer,
         status__in = [
@@ -85,7 +92,7 @@ def create_job_page(request):
             step3_form = forms.JobCreateStep3Form(request.POST, instance=creating_job)
             if step3_form.is_valid():
                 creating_job = step3_form.save()
-                try:
+                if is_location_in_panama(creating_job.pickup_address, creating_job.delivery_address):
                     r = requests.get("https://maps.googleapis.com/maps/api/distancematrix/json?origins={},{}&destinations={},{}&mode=driving&key={}".format(
                         creating_job.pickup_lat,
                         creating_job.pickup_lng,
@@ -100,9 +107,10 @@ def create_job_page(request):
                     creating_job.duration = int(duration/60)
                     creating_job.price = round(creating_job.distance * 1.35, 2) #1.50$ per km
                     creating_job.save()
-                except Exception as e:
-                    print(e)
-                    messages.error(request, "We do not support shipping at this distance.")
+                else:
+                    messages.error(request, "Pickup and delivery locations must be in Panama.")
+                    creating_job.status = Job.CANCELED_STATUS
+                    return redirect(reverse('customer:home'))
 
                 return redirect(reverse('customer:create_job'))
         elif request.POST.get('step') == '4':
@@ -134,6 +142,7 @@ def create_job_page(request):
         "step2_form": step2_form,
         "step3_form": step3_form,
         "GOOGLE_MAP_API_KEY": settings.GOOGLE_MAP_API_KEY,
+        "is_location_in_chiriqui": is_location_in_panama,
     })
 
 
