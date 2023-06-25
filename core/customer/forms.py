@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from core.models import Customer, Job
+from core.models import *
 class BasicUserForm(forms.ModelForm):
     class Meta:
         model = User
