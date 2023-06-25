@@ -50,6 +50,10 @@
         $("#duration").html(job.duration + " mins");
         $("#distance").html(job.distance + " Km");
         $("#price").html("$" + job.price);
+
+        $("#job-details").on("click", function(){
+            window.location.href = "/courier/jobs/available/" + job.id + "/"
+        })
     }
 </script>
 
