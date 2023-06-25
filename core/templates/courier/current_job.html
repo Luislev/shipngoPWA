@@ -12,6 +12,11 @@
     var deliveryLng = parseFloat("{{ job.delivery_lng }}");
 
 function initMap() {
+
+    if (!document.getElementById("map")) {
+        return;
+    }
+
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -52,10 +57,28 @@ function initMap() {
             map: map,
             icon: "{% static 'img/letter-b-shipngo.png' %}",
         })
+        updateCourierPosition(map);
       })
       .catch((e) => window.alert("Directions request failed due to " + status));
   }
 
+  function updateCourierPosition(map) {
+    navigator.geolocation.watchPosition(pos => {
+        var courierPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+        if (!window.courierMarker) {
+            window.courierMarker = new google.maps.Marker({
+                position: courierPosition,
+                map,
+                icon: "{% static 'img/deliveryman1-shipngo.png' %}"
+            });
+        } else {
+            window.courierMarker.setPosition(courierPosition);
+        }
+
+        map.panTo(courierPosition);
+    }, pos=> console.log(pos))
+  }
   window.initMap = initMap;
 </script>
 
@@ -79,6 +102,16 @@ function initMap() {
 {% block content %}
 
 <div class="d-flex flex-column h-100" style="padding-bottom: 60px;">
+
+    <div class="text-center">
+        <div class="btn-group mt-1 mb-1 align-item-center" role="group">
+            <a href="#" class="btn btn-danger">Current Job</a>
+            <a href="#" class="btn btn-outline-danger">Archived Jobs</a>
+        </div>
+    </div>
+
+    {% if job %}
+
     <div id="map"></div>
 
     <div class="card">
@@ -113,6 +146,15 @@ function initMap() {
             </div>
         </div>
     </div>
+
+    {% else %}
+
+    <div id="main" class="text-center">
+        <p>You don't have a job. Pick a new one.</p>
+    </div>
+
+    {% endif %}
+
 </div>
 
 {% include 'courier/bottom_tabs.html' %}
