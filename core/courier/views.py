@@ -22,6 +22,13 @@ def job_details_page(request, id):
     if not job:
         return redirect(reverse('courier:available_jobs'))
 
+    if request.method == "POST":
+        job.courier = request.user.courier
+        job.status = Job.PICKING_STATUS
+        job.save()
+
+        return redirect(reverse('courier:available_jobs'))
+
     return render(request, 'courier/job_details.html', {
         "job": job
     })
