@@ -144,6 +144,10 @@ function initMap() {
                     </div>
                 </div>
             </div>
+
+            <a href="{% url 'courier:current_job_take_photo' job.id %}" class="btn btn-block btn-danger btn-md mt-3">
+                Pickup
+            </a>
         </div>
     </div>
 
