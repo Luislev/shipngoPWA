@@ -146,7 +146,7 @@ function initMap() {
             </div>
 
             <a href="{% url 'courier:current_job_take_photo' job.id %}" class="btn btn-block btn-danger btn-md mt-3">
-                Pickup
+                {% if job.status == 'picking' %} Pickup {% else %} Drop-off {% endif %}
             </a>
         </div>
     </div>
