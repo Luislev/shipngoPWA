@@ -110,8 +110,8 @@ function initMap() {
 
     <div class="text-center">
         <div class="btn-group mt-1 mb-1 align-item-center" role="group">
-            <a href="#" class="btn btn-danger">Current Job</a>
-            <a href="#" class="btn btn-outline-danger">Archived Jobs</a>
+            <a href="{% url 'courier:current_job' %}" class="btn btn-danger">Current Job</a>
+            <a href="{% url 'courier:archived_jobs' %}" class="btn btn-outline-danger">Archived Jobs</a>
         </div>
     </div>
 
