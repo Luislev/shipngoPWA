@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.conf import settings
+from django.contrib import messages
 
 from core.models import *
+from core.courier import forms
 
 @login_required(login_url="/sign-in/?next=/courier/")
 def home(request):
@@ -27,7 +29,7 @@ def job_details_page(request, id):
         job.status = Job.PICKING_STATUS
         job.save()
 
-        return redirect(reverse('courier:available_jobs'))
+        return redirect(('courier:current_job'))
 
     return render(request, 'courier/job_details.html', {
         "job": job
@@ -96,4 +98,20 @@ def profile_page(request):
         "total_earnings": total_earnings,
         "total_jobs": total_jobs,
         "total_km": total_km
+    })
+
+@login_required(login_url="/sign-in/?next=/courier/")
+def payout_method_page(request):
+    payout_form = forms.PayoutForm(instance=request.user.courier)
+
+    if request.method == 'POST':
+        payout_form = forms.PayoutForm(request.POST, instance=request.user.courier)
+        if payout_form.is_valid():
+            payout_form.save()
+
+            messages.success(request, "Yappy number is updated.")
+            return redirect(reverse('courier:profile'))
+
+    return render(request, 'courier/payout_method.html',{
+        'payout_form': payout_form
     })

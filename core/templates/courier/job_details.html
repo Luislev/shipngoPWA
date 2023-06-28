@@ -56,7 +56,7 @@
 
     <b class="text-secondary">CUSTOMER</b>
     <div class="media align-items-center mt-2">
-        <img src="{% if job.customer.avatar %}{{ job.customer.avatar.url }}{% else %}{% static 'img/avatar-shipngo.svg' %}{% endif %}" 
+        <img src="{% if job.customer.avatar %}{{ job.customer.avatar.url }}{% else %}{% static 'img/avatar-shipngo.svg' %}{% endif %}"
         class="rounded-circle mr-3" width="60" height="60">
         <div class="media-body">
             <h5 class="text-danger">{{ job.customer.user.get_full_name }}</h5>
