@@ -1,4 +1,6 @@
 import requests
+from string import ascii_lowercase
+from random import choice
 from django.shortcuts import render, redirect
 from core.customer import forms
 from django.urls import reverse
@@ -116,7 +118,7 @@ def create_job_page(request):
         elif request.POST.get('step') == '4':
             if creating_job.price:
                 Transaction.objects.create(
-                    payment_id = (f'{creating_job.name}-{creating_job.customer}-{(creating_job.delivery_lat*creating_job.delivery_lng%3)}'),
+                    payment_id = (f'{(creating_job.name)}-{(creating_job.customer)}-{"".join(choice(ascii_lowercase) for i in range(16))}'),
                     job = creating_job,
                     amount = creating_job.price,
                 )
