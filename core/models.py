@@ -97,9 +97,16 @@ class Job(models.Model):
         return self.description
 
 class Transaction(models.Model):
+    IN_STATUS = "in"
+    OUT_STATUS = "out"
+    STATUSES = (
+        (IN_STATUS, 'In'),
+        (OUT_STATUS, 'Out'),
+    )
     payment_id = models.CharField(max_length=255,unique=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     amount = models.FloatField(default=0)
+    status = models.CharField(max_length=20, choices=STATUSES, default=IN_STATUS)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
