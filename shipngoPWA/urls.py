@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from core import views
+from core import views, consumers
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -46,6 +46,10 @@ urlpatterns = [
     path('sign-up/', views.sign_up),
     path('customer/', include((customer_urlpatterns, "customer"))),
     path('courier/', include((courier_urlpatterns, "courier"))),
+]
+
+websocket_urlpatterns = [
+    path('ws/jobs/<job_id>/', consumers.JobConsumer.as_asgi())
 ]
 
 if settings.DEBUG:
