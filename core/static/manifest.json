@@ -1,0 +1,14 @@
+{
+    "short_name": "ShipnGo",
+    "name": "Welcome to ShipnGo!",
+    "description": "The best place for shipping your packages",
+    "icons": [
+        {
+            "src": "/static/img/logo-shipngo.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/courier/",
+    "display": "standalone"
+}
