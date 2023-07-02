@@ -1,17 +1,76 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<style>
+  .quotationmarks {
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+  .quotationmarks .title-quotationmarks {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 15px;
+  }
+  .quotationmarks .span-quotationmarks-where {
+    margin-bottom: 40px;
+  }
+  .quotationmarks img {
+    width: 25%;
+    position: absolute;
+    left: 37%;
+    top: 12%;
+  }
+  .quotationmarks .span-quotationmarks-time {
+    color: #e6b152;
+    font-weight: 700;
+  }
+</style>
+{% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="text-center mt-5 mb-5">¡Bienvenido a ShipnGo!</h1>
+      <h1 class="text-center mt-5 mb-5" style="font-size: 64px; font-weight: 800;">¡Bienvenido a ShipnGo!</h1>
     </div>
+
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <h3 class="mt-3 mb-3" style="font-size: 32px; font-weight: 600; letter-spacing: .02rem;">¿Cómo funciona ShipnGo?</h3>
+        </div>
+        <div class="col-md-12 col-sm-12 mt-1">
+          <div class="row">
+            <div class="col-md-4 col-sm-12 text-center howitworks">
+              <img src="./static/img/red-avatar-shipngo.svg" height="200px" class="mb-3">
+              <h3 class="span-title">Usuario</h3>
+              <h6 class="span-fletalo">Entras a shipngopty.com y cotizas tu acarreo.</h6>
+            </div>
+            <div class="col-md-4 col-sm-12 text-center howitworks">
+              <img src="./static/img/deliveryman2-shipngo.svg" height="200px" class="mb-3">
+              <h3 class="span-title">Proceso</h3>
+              <h6 class="span-fletalo">Tu pedido aparecerá a cada fletero y uno podrá aceptarlo.</h6>
+            </div>
+            <div class="col-md-4 col-sm-12 text-center howitworks">
+              <img src="./static/img/delivery-truck-shipngo.svg" height="200px" class="mb-3">
+              <h3 class="span-title">Fletero</h3>
+              <h6 class="span-fletalo">Recogerá tus paquetes y va a tu destino al instante.</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="col-lg-6 mb-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">CLIENTE</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title text-center mb-3">CLIENTE</h5>
+          <p class="card-text">Como cliente que utiliza nuestra aplicación de entrega, puedes disfrutar de la comodidad de recibir tus artículos directamente en tu puerta. <br>
+            Simplemente realiza un pedido, especifica los lugares de recogida y entrega, y deja que nuestros mensajeros confiables se encarguen del resto. <br>
+            Haz un seguimiento de tu paquete en tiempo real, recibe notificaciones y ten la tranquilidad de saber que tus artículos están en buenas manos. <br>
+            Ya sean comestibles, compras en línea o documentos importantes, nuestra aplicación garantiza una experiencia de entrega sin problemas y sin complicaciones para todas tus necesidades.</p>
           <a href="{% url 'customer:home' %}" class="btn btn-dark" style="background-color: #660500">Detalles</a>
         </div>
       </div>
@@ -19,13 +78,42 @@
     <div class="col-lg-6 mb-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">ACARREADOR</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title text-center mb-3">ACARREADOR</h5>
+          <p class="card-text">Únete a nuestra aplicación de reparto como mensajero y desbloquea un mundo de oportunidades de ganancias con flexibilidad.<br>
+            Como mensajero, puedes elegir tus propias horas de trabajo y aceptar solicitudes de entrega que se ajusten a tu horario.<br>
+            Gana dinero mientras aprovechas tu tiempo libre y exploras tu ciudad. Nuestra aplicación te proporciona todas las herramientas necesarias para gestionar eficientemente tus entregas, incluyendo optimización de rutas y seguimiento en tiempo real.<br>
+            Únete a nuestra red de mensajeros y conviértete en una parte vital de nuestro servicio de entrega confiable y eficiente, llevando sonrisas a los rostros de nuestros clientes con cada paquete que entregas.</p>
           <a href="{% url 'courier:home' %}" class="btn btn-dark" style="background-color: #660500">Detalles</a>
         </div>
       </div>
     </div>
+
+    <div class="container mt-3">
+      <div class="row mt-5">
+        <div class="col-md-4 col-sm-12 text-center quotationmarks">
+          <h5 class="title-quotationmarks">SOFÍA BROWN</h5>
+          <h6 class="span-quotationmarks span-quotationmarks-where">De Gualaca</h6>
+          <img src="./static/img/stars-shipngo.svg">
+          <h6 class="span-quotationmarks">Ya realicé 2 mudanzas con ellos y todo de 10! El servicio es muy fácil y transparente a la hora de cotizar. Los 2 equipos de trabajo que me tocaron fueron muy cuidadosos con los muebles, tenían todas las herramientas necesarias para realizar la mudanza.</h6>
+          <h6 class="span-quotationmarks span-quotationmarks-time">Hace 3 meses</h6>
+        </div>
+        <div class="col-md-4 col-sm-12 text-center quotationmarks mt-resp">
+          <h5 class="title-quotationmarks">ALEJANDRO GUTIERREZ</h5>
+          <h6 class="span-quotationmarks span-quotationmarks-where">De Boquete</h6>
+          <img src="./static/img/stars-shipngo.svg">
+          <h6 class="span-quotationmarks">¡Excelente servicio! Nos mudamos el 4/4 desde David hasta Boquete, con parada intermedia, con César y el equipo, y fueron muy profesionales. Protegieron todas nuestras cosas, fueron puntuales, cuidadosos, amables y predispuestos. Super recomendable.</h6>
+          <h6 class="span-quotationmarks span-quotationmarks-time">Hace 1 mes</h6>
+        </div>
+        <div class="col-md-4 col-sm-12 text-center quotationmarks mt-resp">
+          <h5 class="title-quotationmarks">MARCELA BONAGAS</h5>
+          <h6 class="span-quotationmarks span-quotationmarks-where">De David</h6>
+          <img src="./static/img/stars-shipngo.svg">
+          <h6 class="span-quotationmarks">Muy buen servicio y atención. Rápidos y cuidadosos, acomodaron los muebles en el lugar que quería, el fletero Dario y su gente hicieron un excelente trabajo de mudanza hasta David. Todo el equipo de ShipnGo y sus fleteros son 100% recomendables. Gracias!</h6>
+          <h6 class="span-quotationmarks span-quotationmarks-time">Hace 2 meses</h6>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 {% endblock %}

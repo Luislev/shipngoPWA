@@ -21,25 +21,30 @@
 </head>
 <body style="font-family: 'Inter', sans-serif;">
 <nav class="navbar {% if not request.user.is_authenticated %} navbar-expand-lg {% endif %} navbar-dark" style="background-color: #660500;">
-    <a class="navbar-brand" style=" font-weight: 900; font-size: 35px;" href="/">ShipnGo</a>
+    <a class="navbar-brand" style=" font-weight: 900; font-size: 35px; display: flex; align-items: center;" href="/">
+      <img src="./static/img/logo-shipngo.png" width="64px">
+      ShipnGo
+    </a>
     {% if not request.user.is_authenticated %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item {% if request.GET.next != '/courier/'%} active {% endif %}">
-          <a class="nav-link" href="/sign-in/?next=/customer">Cliente <span class="sr-only">(current)</span></a>
+          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/customer">Cliente <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item  {% if request.GET.next == '/courier/'%} active {% endif %}">
-          <a class="nav-link" href="/sign-in/?next=/courier">Acarreador</a>
+          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/courier">Acarreador</a>
         </li>
       </ul>
     </div>
     {% else %}
     <form class="form-inline">
-      <span class="mr-4" style="color: white; font-weight: 600;">{{ request.user.get_full_name|title }}</span>
-    <a href="/sign-out" class="btn btn-outline-light">Sign Out</a>
+      <span class="mr-3" style="color: white; font-weight: 600;">{{ request.user.get_full_name|title }}</span>
+      <a href="{% url 'courier:home' %}" class="btn btn-outline-light mr-3">Courier</a>
+      <a href="{% url 'customer:home' %}" class="btn btn-outline-light mr-3">Customer</a>
+      <a href="/sign-out" class="btn btn-outline-light mr-3">Sign Out</a>
     </form>
     {% endif %}
   </nav>
