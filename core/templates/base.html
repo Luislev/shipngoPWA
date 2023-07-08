@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShipnGo | Entrega de fletes a domicilio</title>
+    <title>ShipnGo | Home Delivery Freight</title>
     <link rel="shortcut icon" href="{% static 'img/logo-shipngo.png' %}">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800;900&display=swap');
@@ -31,11 +31,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item {% if request.GET.next != '/courier/'%} active {% endif %}">
-          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/customer">Cliente <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item  {% if request.GET.next == '/courier/'%} active {% endif %}">
-          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/courier">Acarreador</a>
+          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/courier">Courier</a>
+        </li>
+        <li class="nav-item {% if request.GET.next != '/courier/'%} active {% endif %}">
+          <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/customer">Customer <span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
@@ -53,7 +53,7 @@
 
   <footer class="page-footer text-center text-light mt-4" style="background-color: #660500;">
     <p style="font-weight: 900; font-size: 25px;">ShipnGo</p>
-    &copy; Copyright. Todos los derechos reservados ShipnGo 2023
+    &copy; Copyright. All Rights Reserved ShipnGo 2023.
   </footer>
 
   <script src="https://unpkg.com/bootoast@1.0.1/dist/bootoast.min.js"></script>
