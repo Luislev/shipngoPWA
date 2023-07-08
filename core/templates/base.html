@@ -31,6 +31,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
+        <span class="mr-3" style="color: white; font-weight: 600; margin: auto;">Enter as:</span>
         <li class="nav-item  {% if request.GET.next == '/courier/'%} active {% endif %}">
           <a class="btn btn-outline-light mr-3" href="/sign-in/?next=/courier">Courier</a>
         </li>
@@ -41,7 +42,7 @@
     </div>
     {% else %}
     <form class="form-inline">
-      <span class="mr-3" style="color: white; font-weight: 600;">{{ request.user.get_full_name|title }}</span>
+      <span class="mr-3" style="color: white; font-weight: 600; margin: auto;">{{ request.user.get_full_name|title }}</span>
       <a href="{% url 'courier:home' %}" class="btn btn-outline-light mr-3">Courier</a>
       <a href="{% url 'customer:home' %}" class="btn btn-outline-light mr-3">Customer</a>
       <a href="/sign-out" class="btn btn-outline-light mr-3">Sign Out</a>
@@ -51,7 +52,7 @@
 
   {% block content %}{% endblock %}
 
-  <footer class="page-footer text-center text-light mt-4" style="background-color: #660500;">
+  <footer class="page-footer text-center text-light mt-4" style="background-color: #660500; padding: 2rem 0 2rem">
     <p style="font-weight: 900; font-size: 25px;">ShipnGo</p>
     &copy; Copyright. All Rights Reserved ShipnGo 2023.
   </footer>
