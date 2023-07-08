@@ -31,7 +31,7 @@ defer
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3>JOB SUMMARY</h3>
+                    <h3><b>JOB SUMMARY</b></h3>
                 </div>
                 <div class="card-body">
                     {% if not job %}
@@ -40,24 +40,24 @@ defer
 
                     {% if step > 1 %}
                     <h4>Name: {{ job.name }}</h4>
-                    <span>Description: {{ job.description }}</span>
-                    <span>Category: {{ job.category }}</span>
-                    <span>Size: {{ job.size }}</span>
-                    <span>Quantity: {{ job.quantity }}</span>
+                    <h6>Description: {{ job.description }}</h6>
+                    <h6>Category: {{ job.category }}</h6>
+                    <h6>Size: {{ job.size }}</h6>
+                    <h6>Quantity: {{ job.quantity }}</h6>
                     {% endif %}
 
                     {% if step > 2 %}
                     <hr>
                     <p class="text-secondary"><small><b>PICKUP</b></small></p>
                     <h4>Pickup name: {{ job.pickup_name }}</h4>
-                    <span>Address: {{ job.pickup_address }}</span>
+                    <h6>Address: {{ job.pickup_address }}</h6>
                     {% endif %}
 
                     {% if step > 3 %}
                     <hr>
                     <p class="text-secondary"><small><b>DELIVERY</b></small></p>
                     <h4>Delivery name: {{ job.delivery_name }}</h4>
-                    <span>Address: {{ job.delivery_address }}</span>
+                    <h6>Address: {{ job.delivery_address }}</h6>
                     {% endif %}
 
                     {% endif %}
