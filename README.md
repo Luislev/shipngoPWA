@@ -41,3 +41,24 @@ El motivo detrás de este proyecto es abordar esta limitación geográfica y ofr
 3. **Tracking:** Puedes ver la localización del mensajero en tiempo real. <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148018473843294288/image.png" width="32px">
 4. **Entrega:** El mensajero copleta el trabajo y entrega tu paquete a la localización indicada. <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148018491727822948/image.png" width="32px">
 
+## 📽 Contenido Multimedia
+
+### Esquema - Sistema entre cliente y acarreador
+
+<img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148021316721586346/image.png" width="600px">
+
+### Imagenes - Ciente
+
+![image](https://github.com/Luislev/shipngoPWA/assets/103515231/a4e776d7-9720-48d2-974c-44970e349103)
+![image](https://github.com/Luislev/shipngoPWA/assets/103515231/a2ab544b-6ae8-4547-adb6-63ab0a3fbd72)
+![image](https://github.com/Luislev/shipngoPWA/assets/103515231/ddb00a75-2371-482e-af7b-b7d6000bca7f)
+
+### Imagenes - Mensajero
+
+![image](https://github.com/Luislev/shipngoPWA/assets/103515231/2d2d9f9e-8664-44c2-ae51-c406812ce79f)
+![image](https://github.com/Luislev/shipngoPWA/assets/103515231/76b5ce13-2fea-44e6-9863-92778a05f236)
+
+
+
+
+
