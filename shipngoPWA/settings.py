@@ -163,4 +163,4 @@ DEFAULT_FROM_EMAIL = 'ShipnGo <no-reply@shipngopty.localhost>'
 
 GOOGLE_MAP_API_KEY = env("GOOGLE_MAP_API_KEY")
 
-ASGI_APPLICATION = "shipngoPWA.asgi.application"
+ASGI_APPLICATION = "shipngoPWA.asgi.application" 
