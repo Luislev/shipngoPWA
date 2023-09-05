@@ -49,14 +49,18 @@ El motivo detrás de este proyecto es abordar esta limitación geográfica y ofr
 
 ### Imagenes - Ciente
 
-![image](https://github.com/Luislev/shipngoPWA/assets/103515231/a4e776d7-9720-48d2-974c-44970e349103)
-![image](https://github.com/Luislev/shipngoPWA/assets/103515231/a2ab544b-6ae8-4547-adb6-63ab0a3fbd72)
-![image](https://github.com/Luislev/shipngoPWA/assets/103515231/ddb00a75-2371-482e-af7b-b7d6000bca7f)
+<span>
+  <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148491327126913087/image.png" width="200px">
+  <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148491342759084042/image.png" width="200px">
+  <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148491354285035590/image.png" width="200px">
+</span>
 
 ### Imagenes - Mensajero
 
-![image](https://github.com/Luislev/shipngoPWA/assets/103515231/2d2d9f9e-8664-44c2-ae51-c406812ce79f)
-![image](https://github.com/Luislev/shipngoPWA/assets/103515231/76b5ce13-2fea-44e6-9863-92778a05f236)
+<span>
+  <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148491371397783602/image.png" width="400px">
+  <img src="https://cdn.discordapp.com/attachments/1059340932018864149/1148491386484707389/image.png" width="200px">
+</span>
 
 
 
